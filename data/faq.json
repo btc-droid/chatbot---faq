@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "category": "pendaftaran",
+    "question": "Bagaimana cara pendaftaran?",
+    "answer": "Pendaftaran dilakukan secara online melalui website resmi kampus.",
+    "tags": [
+      "daftar",
+      "registrasi",
+      "mahasiswa baru"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "pendaftaran",
+    "question": "Kapan pendaftaran dibuka?",
+    "answer": "Pendaftaran dibuka mulai 1 Juni hingga 30 Juli setiap tahun.",
+    "tags": [
+      "jadwal",
+      "tanggal"
+    ]
+  },
+  {
+    "id": 3,
+    "category": "biaya",
+    "question": "Berapa biaya pendaftaran?",
+    "answer": "Biaya pendaftaran sebesar Rp300.000.",
+    "tags": [
+      "biaya",
+      "pembayaran",
+      "harga"
+    ]
+  },
+  {
+    "id": 4,
+    "category": "akademik",
+    "question": "Apakah bisa pindah jurusan?",
+    "answer": "Pindah jurusan dapat dilakukan setelah semester 1 sesuai ketentuan akademik.",
+    "tags": [
+      "jurusan",
+      "akademik"
+    ]
+  },
+  {
+    "id": 5,
+    "category": "kontak",
+    "question": "Ke mana saya bisa bertanya?",
+    "answer": "Silakan hubungi layanan resmi kampus melalui email atau WhatsApp.",
+    "tags": [
+      "kontak",
+      "bantuan"
+    ]
+  }
+]
