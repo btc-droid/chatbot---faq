@@ -1,7 +1,9 @@
 from typing import Any, Dict, List
 
-from fastapi import FastAPI
-from fastapi.responses import Response
+from fastapi import FastAPI, Request
+from fastapi.responses import Response, HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
 
 from app.chatbot import FAQChatbot
@@ -17,10 +19,15 @@ app = FastAPI(
 )
 
 # =========================
+# STATIC + TEMPLATES (UI)
+# =========================
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+templates = Jinja2Templates(directory="app/templates")
+
+# =========================
 # LOAD CHATBOT
 # =========================
 chatbot = FAQChatbot(str(FAQ_PATH), enable_rag=True)
-
 
 # =========================
 # SCHEMAS
@@ -28,12 +35,10 @@ chatbot = FAQChatbot(str(FAQ_PATH), enable_rag=True)
 class ChatRequest(BaseModel):
     message: str = Field(..., min_length=1, description="Pertanyaan dari user")
 
-
 class ContextItem(BaseModel):
     id: str
     score: float
     metadata: Dict[str, Any] = Field(default_factory=dict)
-
 
 class ChatResponse(BaseModel):
     answer: str
@@ -41,19 +46,17 @@ class ChatResponse(BaseModel):
     source: str  # "faq" | "handbook" | "none"
     contexts: List[ContextItem] = Field(default_factory=list)
 
-
 # =========================
 # ROUTES
 # =========================
-@app.get("/")
-def root():
-    return {"message": "FAQ Chatbot API (FAQ + RAG) is running"}
-
+@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    # tampilkan UI chat
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.get("/favicon.ico", include_in_schema=False)
 def favicon():
     return Response(status_code=204)
-
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
@@ -76,3 +79,7 @@ def chat(req: ChatRequest):
         source=str(result.get("source", "none")),
         contexts=contexts,
     )
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}

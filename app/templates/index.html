@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chatbot FAQ + RAG</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">🤖</div>
+        <div>
+          <div class="title">Chatbot FAQ + RAG</div>
+          <div class="subtitle">Tanya apa saja seputar informasi kampus</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btnClear" class="btn ghost" title="Hapus chat">Clear</button>
+        <a class="btn ghost" href="/docs" target="_blank" rel="noreferrer">API Docs</a>
+      </div>
+    </header>
+
+    <main id="chat" class="chat">
+      <div class="msg bot">
+        <div class="bubble">
+          Halo! Silakan tanya apa saja. Aku akan jawab dari FAQ atau handbook.
+        </div>
+        <div class="meta">bot</div>
+      </div>
+    </main>
+
+    <footer class="composer">
+      <form id="form" class="composerInner">
+        <input id="input" class="input" placeholder="Ketik pertanyaan..." autocomplete="off" />
+        <button id="btnSend" class="btn primary" type="submit">Kirim</button>
+      </form>
+      <div class="hint">Enter untuk kirim • Shift+Enter untuk baris baru (opsional)</div>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
